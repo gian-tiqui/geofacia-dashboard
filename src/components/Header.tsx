@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const linkClass = "px-2";
+const linkClass = "mx-2";
 
 type User = {
   username: string;
@@ -27,7 +27,7 @@ const Header = () => {
   return (
     <nav className="d-flex justify-content-between p-3 bg-dark">
       <div className="text-light">
-        <Link to="/">Dashboard</Link>
+        <Link to="/">DASHBOARD</Link>
       </div>
       <div>
         <Link to="/" className={linkClass}>
