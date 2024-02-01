@@ -16,6 +16,7 @@ type SideBarProps = {
 const Sidebar = ({ children }: SideBarProps) => {
   const [user, setUser] = useState<User | undefined>(undefined);
   const logout = useContext(SetLoggedInContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tempUser: User = {
@@ -29,6 +30,7 @@ const Sidebar = ({ children }: SideBarProps) => {
   }, []);
 
   const handleLogout = () => {
+    navigate("/");
     logout(false);
   };
 
