@@ -30,7 +30,7 @@ const Sidebar = ({ children }: SideBarProps) => {
     <div className="container-fluid">
       <div className="row bg-white" style={{ height: "100vh" }}>
         <div
-          className="bg-light shadow border col-auto col-md-3 min-vh-100"
+          className="bg-light shadow border col-auto col-lg-2 min-vh-100"
           style={{ overflowY: "auto", height: "100%" }}
         >
           <a className="text-decoration-none d-flex align-items-center justify-content-center mt-3">
@@ -41,10 +41,20 @@ const Sidebar = ({ children }: SideBarProps) => {
           <div className="row d-flex justify-content-between">
             <div className="col">
               <ul className="nav nav-pills flex-column">
-                <li className="nav-item text-white fs-4">
+                <li className="nav-item text-white fs-5">
                   <Link to="/" className="nav-link" aria-current="page">
                     <i className="bi bi-speedometer2 text-dark"></i>
                     <span className="ms-2 text-dark">Dashboard</span>
+                  </Link>
+                </li>
+                <li className="nav-item text-white fs-5">
+                  <Link
+                    to="/attendance"
+                    className="nav-link"
+                    aria-current="page"
+                  >
+                    <i className="bi bi-person-check-fill text-dark"></i>
+                    <span className="ms-2 text-dark">Attendance</span>
                   </Link>
                 </li>
               </ul>
