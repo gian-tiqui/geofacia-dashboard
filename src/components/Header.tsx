@@ -27,9 +27,9 @@ const Header = () => {
   return (
     <nav className="d-flex justify-content-between p-3 bg-dark">
       <div className="text-light">
-        <Link to="/">DASHBOARD</Link>
+        <h3>DASHBOARD</h3>
       </div>
-      <div>
+      <div className="d-flex justify-content-center align-items-center">
         <Link to="/" className={linkClass}>
           HOME
         </Link>
@@ -40,9 +40,11 @@ const Header = () => {
           ABOUT
         </Link>
       </div>
-      <button className="btn btn-sm px-3 btn-secondary text-light">
-        {user?.username.toUpperCase()}
-      </button>
+      <div className="d-flex justify-content-start align-items-start">
+        <button className="btn btn-sm px-3 btn-secondary text-light">
+          {user?.username.toUpperCase()}
+        </button>
+      </div>
     </nav>
   );
 };
