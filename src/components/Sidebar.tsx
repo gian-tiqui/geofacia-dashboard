@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, ReactNode } from "react";
 
 type User = {
   username: string;
@@ -8,7 +8,11 @@ type User = {
   middleName: string;
 };
 
-const Sidebar = ({ children }) => {
+type SideBarProps = {
+  children: ReactNode;
+};
+
+const Sidebar = ({ children }: SideBarProps) => {
   const [user, setUser] = useState<User | undefined>(undefined);
 
   useEffect(() => {
@@ -24,33 +28,35 @@ const Sidebar = ({ children }) => {
 
   return (
     <div className="container-fluid">
-      <div className="row">
-        <div className="bg-dark col-auto col-md-3 min-vh-100">
-          <a className="text-decoration-none d-flex align-items-center">
-            <span className="ms-1 fs-4">Geofacia</span>
+      <div className="row bg-white" style={{ height: "100vh" }}>
+        <div
+          className="bg-light shadow border col-auto col-md-3 min-vh-100"
+          style={{ overflowY: "auto", height: "100%" }}
+        >
+          <a className="text-decoration-none d-flex align-items-center justify-content-center mt-3">
+            <span className="ms-1 fs-4 text-dark">
+              <p className="fs-2 fw-bold">GeoFacia</p>
+            </span>
           </a>
-          <ul className="nav nav-pills flex-column">
-            <li className="nav-item text-white fs-4">
-              <Link to="/" className="nav-link" aria-current="page">
-                <i className="bi bi-speedometer2"></i>
-                <span className="ms-2">Dashboard</span>
-              </Link>
-            </li>
-            <li className="nav-item text-white fs-4">
-              <Link to="/" className="nav-link">
-                <i className="bi bi-heart"></i>
-                <span className="ms-2">Heart</span>
-              </Link>
-            </li>
-            <li className="nav-item text-white fs-4">
-              <Link to="/" className="nav-link">
-                <i className="bi bi-house"></i>
-                <span className="ms-2">Home</span>
-              </Link>
-            </li>
-          </ul>
+          <div className="row d-flex justify-content-between">
+            <div className="col">
+              <ul className="nav nav-pills flex-column">
+                <li className="nav-item text-white fs-4">
+                  <Link to="/" className="nav-link" aria-current="page">
+                    <i className="bi bi-speedometer2 text-dark"></i>
+                    <span className="ms-2 text-dark">Dashboard</span>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <main className="col">{children}</main>
+        <main
+          className="col"
+          style={{ overflowY: "auto", height: "100vh", padding: "20px" }}
+        >
+          {children}
+        </main>
       </div>
     </div>
   );
