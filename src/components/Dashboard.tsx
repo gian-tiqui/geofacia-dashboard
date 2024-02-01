@@ -1,31 +1,6 @@
 import { useState } from "react";
-import { Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  Title,
-  Tooltip,
-  Legend
-);
-
-const options = {
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
+import Bargraph from "./Bargraph";
+import { firstElementMargin } from "../App";
 
 const Dashboard = () => {
   const [data, setData] = useState({
@@ -43,9 +18,17 @@ const Dashboard = () => {
 
   return (
     <>
-      <h1>Dashboard</h1>
-      <div>
-        <Bar data={data} options={options} />
+      <h1 className={firstElementMargin}>Dashboard</h1>
+      <div className="row">
+        {Array(3)
+          .fill(0)
+          .map((_, index) => (
+            <div key={index} className="col p-1">
+              <div className="card">
+                <Bargraph data={data} />
+              </div>
+            </div>
+          ))}
       </div>
     </>
   );
