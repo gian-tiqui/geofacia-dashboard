@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { useState, useEffect, ReactNode } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect, ReactNode, useContext } from "react";
+import { SetLoggedInContext } from "../App";
 
 type User = {
   username: string;
@@ -14,6 +15,7 @@ type SideBarProps = {
 
 const Sidebar = ({ children }: SideBarProps) => {
   const [user, setUser] = useState<User | undefined>(undefined);
+  const logout = useContext(SetLoggedInContext);
 
   useEffect(() => {
     const tempUser: User = {
@@ -25,6 +27,10 @@ const Sidebar = ({ children }: SideBarProps) => {
 
     setUser(tempUser);
   }, []);
+
+  const handleLogout = () => {
+    logout(false);
+  };
 
   return (
     <div className="container-fluid">
@@ -42,7 +48,11 @@ const Sidebar = ({ children }: SideBarProps) => {
             <div className="col">
               <ul className="nav nav-pills flex-column">
                 <li className="nav-item text-white fs-5">
-                  <Link to="/" className="nav-link" aria-current="page">
+                  <Link
+                    to="/dashboard"
+                    className="nav-link"
+                    aria-current="page"
+                  >
                     <i className="bi bi-speedometer2 text-dark"></i>
                     <span className="ms-2 text-dark">Dashboard</span>
                   </Link>
@@ -64,6 +74,9 @@ const Sidebar = ({ children }: SideBarProps) => {
                   </Link>
                 </li>
               </ul>
+              <button className="btn btn-danger" onClick={handleLogout}>
+                Logout
+              </button>
             </div>
           </div>
         </div>

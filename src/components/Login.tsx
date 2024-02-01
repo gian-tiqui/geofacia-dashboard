@@ -1,10 +1,6 @@
-import { useNavigate } from "react-router-dom";
-
-const Login = () => {
-  const navigate = useNavigate();
-
+const Login = ({ onLogin }) => {
   const handleClick = () => {
-    navigate("/dashboard");
+    onLogin(true);
   };
 
   return (
