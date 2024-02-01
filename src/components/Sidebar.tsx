@@ -57,6 +57,12 @@ const Sidebar = ({ children }: SideBarProps) => {
                     <span className="ms-2 text-dark">Attendance</span>
                   </Link>
                 </li>
+                <li className="nav-item text-white fs-5">
+                  <Link to="/users" className="nav-link" aria-current="page">
+                    <i className="bi bi-people-fill text-dark"></i>
+                    <span className="ms-2 text-dark">Users</span>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
