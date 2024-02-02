@@ -12,7 +12,7 @@ interface Student {
   institutionalID: string;
 }
 
-const Students = () => {
+const Hosts = () => {
   const [originalStudents, setOriginalStudents] = useState<Student[]>([]);
   const [students, setStudents] = useState<Student[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -31,7 +31,7 @@ const Students = () => {
 
         if (!snapshot.empty) {
           const userData = snapshot.docs[0].data();
-          if (userData.role === "student") {
+          if (userData.role === "host") {
             studentsData.push({
               id: userId,
               course: userData.course,
@@ -91,7 +91,7 @@ const Students = () => {
     <div className="container">
       <div className="p-3 border shadow mt-5" style={{ height: "80vh" }}>
         <div className="mb-3 d-flex align-self-center justify-content-between">
-          <h3>Students</h3>
+          <h3>Hosts</h3>
 
           <div>
             <input
@@ -108,7 +108,7 @@ const Students = () => {
         <table className="table table-striped mt-3">
           <thead>
             <tr>
-              <th scope="col">STUDENT NO.</th>
+              <th scope="col">ID</th>
               <th scope="col">Firstname</th>
               <th scope="col">Lastname</th>
               <th scope="col">Middlename</th>
@@ -138,4 +138,4 @@ const Students = () => {
   );
 };
 
-export default Students;
+export default Hosts;

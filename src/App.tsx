@@ -5,6 +5,7 @@ import Attendance from "./components/Attendance";
 import Login from "./components/Login";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
 import Students from "./components/Students";
+import Hosts from "./components/Hosts";
 
 export type User = {
   firstName: string;
@@ -43,6 +44,7 @@ const App = () => {
                     <Route path="/dashboard" Component={Dashboard} />
                     <Route path="/attendance" Component={Attendance} />
                     <Route path="/students" Component={Students} />
+                    <Route path="/hosts" Component={Hosts} />
                   </Routes>
                 </div>
               </Sidebar>

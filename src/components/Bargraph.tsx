@@ -44,8 +44,8 @@ type BarProps = {
 export type DataSets = {
   label: string;
   data: number[];
-  backgroundColor: string;
-  borderColor: string;
+  backgroundColor: string[];
+  borderColor: string[];
   borderWidth: number;
 };
 

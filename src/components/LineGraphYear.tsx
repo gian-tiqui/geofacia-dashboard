@@ -7,7 +7,7 @@ import {
   LinearScale,
   PointElement,
 } from "chart.js";
-import { Event, GraphData, DataSets } from "./Bargraph";
+import { Event } from "./Bargraph";
 
 Chart.register(LineElement, CategoryScale, LinearScale, PointElement);
 

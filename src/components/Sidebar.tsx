@@ -64,6 +64,12 @@ const Sidebar = ({ children }: SideBarProps) => {
                     <span className="ms-2 text-dark">Students</span>
                   </Link>
                 </li>
+                <li className="nav-item text-white fs-5">
+                  <Link to="/hosts" className="nav-link" aria-current="page">
+                    <i className="bi bi-people-fill text-dark"></i>
+                    <span className="ms-2 text-dark">Hosts</span>
+                  </Link>
+                </li>
               </ul>
               <button className="btn btn-danger" onClick={handleLogout}>
                 {user?.firstName}
