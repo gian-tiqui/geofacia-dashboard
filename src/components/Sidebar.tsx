@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect, ReactNode, useContext } from "react";
 import { SetLoggedInContext } from "../App";
+import { getAuth, signOut } from "firebase/auth";
 
 type User = {
   username: string;
@@ -29,11 +30,16 @@ const Sidebar = ({ children }: SideBarProps) => {
     setUser(tempUser);
   }, []);
 
-  const handleLogout = () => {
-    navigate("/");
-    logout(false);
+  const handleLogout = async () => {
+    const auth = getAuth();
+    try {
+      await signOut(auth);
+      navigate("/");
+      logout(false);
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
-
   return (
     <div className="container-fluid">
       <div className="row bg-white" style={{ height: "100vh" }}>
