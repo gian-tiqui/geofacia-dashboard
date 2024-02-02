@@ -46,7 +46,9 @@ const AttendeesContainer = ({ eventId }: Popeyes) => {
 
   return (
     <>
-      {attendees?.length !== 0 ? <div>{JSON.stringify(attendees)}</div> : null}
+      {attendees?.length !== 0 ? (
+        <div className="col border shadow m-2">{JSON.stringify(attendees)}</div>
+      ) : null}
     </>
   );
 };
