@@ -41,7 +41,7 @@ type BarProps = {
   events: Event[];
 };
 
-type DataSets = {
+export type DataSets = {
   label: string;
   data: number[];
   backgroundColor: string;
@@ -49,19 +49,27 @@ type DataSets = {
   borderWidth: number;
 };
 
-type GraphData = {
+export type GraphData = {
   labels: string[];
   datasets: DataSets[];
 };
 
 const initialData: GraphData = {
-  labels: [],
+  labels: ["Upcoming", "Started", "Ended"],
   datasets: [
     {
-      label: "Number of Events",
-      data: [],
-      backgroundColor: "rgba(255, 99, 132, 0.2)",
-      borderColor: "rgba(255, 99, 132, 1)",
+      label: "Number of Events per status",
+      data: [0, 0, 0],
+      backgroundColor: [
+        "rgba(255, 99, 132, 0.2)",
+        "rgba(54, 162, 235, 0.2)",
+        "rgba(75, 192, 192, 0.2)",
+      ],
+      borderColor: [
+        "rgba(255, 99, 132, 1)",
+        "rgba(54, 162, 235, 1)",
+        "rgba(75, 192, 192, 1)",
+      ],
       borderWidth: 1,
     },
   ],
@@ -71,23 +79,42 @@ const Bargraph = ({ events }: BarProps) => {
   const [data, setData] = useState<GraphData>(initialData);
 
   useEffect(() => {
-    const eventsByYear = events.reduce((acc, event) => {
-      const year = event.date.split("/")[0];
-      acc[year] = acc[year] || 0;
-      acc[year]++;
-      return acc;
-    }, {});
-
-    const sortedYears = Object.keys(eventsByYear).sort();
+    const eventsByStatus = events.reduce(
+      (acc, event) => {
+        switch (event.status) {
+          case "upcoming":
+            acc[0]++;
+            break;
+          case "started":
+            acc[1]++;
+            break;
+          case "ended":
+            acc[2]++;
+            break;
+          default:
+            break;
+        }
+        return acc;
+      },
+      [0, 0, 0]
+    );
 
     const updatedData: GraphData = {
-      labels: sortedYears,
+      labels: ["Upcoming", "Started", "Ended"],
       datasets: [
         {
-          label: "Number of Events",
-          data: sortedYears.map((year) => eventsByYear[year]),
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
+          label: "Number of Events per status",
+          data: eventsByStatus,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(75, 192, 192, 1)",
+          ],
           borderWidth: 1,
         },
       ],
