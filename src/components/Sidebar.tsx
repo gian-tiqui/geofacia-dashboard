@@ -1,34 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect, ReactNode, useContext } from "react";
-import { SetLoggedInContext } from "../App";
+import { ReactNode, useContext } from "react";
+import { SetLoggedInContext, UserContext } from "../App";
 import { getAuth, signOut } from "firebase/auth";
-
-type User = {
-  username: string;
-  firstName: string;
-  lastName: string;
-  middleName: string;
-};
 
 type SideBarProps = {
   children: ReactNode;
 };
 
 const Sidebar = ({ children }: SideBarProps) => {
-  const [user, setUser] = useState<User | undefined>(undefined);
   const logout = useContext(SetLoggedInContext);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const tempUser: User = {
-      username: "Gian",
-      firstName: "Michael Gian",
-      middleName: "Magsino",
-      lastName: "Tiqui",
-    };
-
-    setUser(tempUser);
-  }, []);
+  const user = useContext(UserContext);
 
   const handleLogout = async () => {
     const auth = getAuth();
@@ -40,6 +22,7 @@ const Sidebar = ({ children }: SideBarProps) => {
       console.error("Error during logout:", error);
     }
   };
+
   return (
     <div className="container-fluid">
       <div className="row bg-white" style={{ height: "100vh" }}>
@@ -83,7 +66,7 @@ const Sidebar = ({ children }: SideBarProps) => {
                 </li>
               </ul>
               <button className="btn btn-danger" onClick={handleLogout}>
-                Logout
+                {user?.firstName}
               </button>
             </div>
           </div>
