@@ -2,9 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Dashboard from "./components/Dashboard";
 import Sidebar from "./components/Sidebar";
 import Attendance from "./components/Attendance";
-import Users from "./components/Users";
 import Login from "./components/Login";
 import { Dispatch, SetStateAction, createContext, useState } from "react";
+import Students from "./components/Students";
 
 export type User = {
   firstName: string;
@@ -42,7 +42,7 @@ const App = () => {
                   <Routes>
                     <Route path="/dashboard" Component={Dashboard} />
                     <Route path="/attendance" Component={Attendance} />
-                    <Route path="/users" Component={Users} />
+                    <Route path="/students" Component={Students} />
                   </Routes>
                 </div>
               </Sidebar>

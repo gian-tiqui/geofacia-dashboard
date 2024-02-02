@@ -1,8 +1,14 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { SetUserContext, User } from "../App";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  collection,
+  getDocs,
+} from "firebase/firestore";
 import { app } from "../firestore/Firestore";
 
 type FormData = {
@@ -78,7 +84,7 @@ const Login = ({ onLogin }: LoginProp) => {
       setUserData(user.uid);
 
       onLogin(true);
-      navigate("/dashboard");
+      navigate("/attendance");
     } catch (error) {
       console.error("Authentication error:", error);
       alert("Username or password is wrong.");
