@@ -20,12 +20,11 @@ const LineGraphYear = ({ events }: LineProps) => {
     labels: [],
     datasets: [
       {
-        label: "Number of events per status",
+        label: "Number of Events per year",
         data: [],
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: "rgba(120, 156, 191, 0.2)", // Complementary background color
+        borderColor: "rgba(120, 156, 191, 1)", // Complementary border color
         borderWidth: 1,
-        fill: true,
         tension: 0.4,
       },
     ],
@@ -47,10 +46,9 @@ const LineGraphYear = ({ events }: LineProps) => {
         {
           label: "Number of Events per year",
           data: sortedYears.map((year) => eventsByYear[year]),
-          backgroundColor: "rgba(255, 99, 132, 0.2)",
-          borderColor: "rgba(255, 99, 132, 1)",
-          borderWidth: 1,
-          tension: 0.4,
+          backgroundColor: "rgba(120, 156, 191, 1)",
+          borderColor: "rgba(120, 156, 191, 1)",
+          borderWidth: 4,
         },
       ],
     };
@@ -59,11 +57,33 @@ const LineGraphYear = ({ events }: LineProps) => {
   }, [events]);
 
   const options = {
-    plugins: {
-      legend: true,
-    },
     scales: {
-      y: {},
+      y: {
+        beginAtZero: true,
+        color: "#7799b3",
+        ticks: {
+          color: "#7799b3",
+        },
+        grid: {
+          color: "#7799b3",
+        },
+      },
+      x: {
+        color: "#7799b3",
+        ticks: {
+          color: "#7799b3",
+        },
+        grid: {
+          color: "#7799b3",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        labels: {
+          color: "#7799b3",
+        },
+      },
     },
   };
 

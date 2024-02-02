@@ -1,14 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { SetUserContext, User } from "../App";
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  collection,
-  getDocs,
-} from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { app } from "../firestore/Firestore";
 
 type FormData = {
@@ -84,7 +78,7 @@ const Login = ({ onLogin }: LoginProp) => {
       setUserData(user.uid);
 
       onLogin(true);
-      navigate("/attendance");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Authentication error:", error);
       alert("Username or password is wrong.");
@@ -93,12 +87,20 @@ const Login = ({ onLogin }: LoginProp) => {
 
   return (
     <div className="container d-flex align-items-center justify-content-center vh-100">
-      <div className="card p-4 shadow">
-        <h4 className="text-center mb-4">Welcome to</h4>
-        <h4 className="text-center mb-4">Geofacia Dashboard</h4>
+      <div className="card p-4 shadow" style={{ backgroundColor: "#0d2136" }}>
+        <h4 className="text-center mb-4" style={{ color: "#cde3fd" }}>
+          Welcome to
+        </h4>
+        <h4 className="text-center mb-4" style={{ color: "#cde3fd" }}>
+          Geofacia Dashboard
+        </h4>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label htmlFor="emailAnchor" className="form-label">
+            <label
+              htmlFor="emailAnchor"
+              className="form-label"
+              style={{ color: "#cde3fd" }}
+            >
               Email address
             </label>
             <input
@@ -108,13 +110,20 @@ const Login = ({ onLogin }: LoginProp) => {
               placeholder="Enter email"
               name="username"
               onChange={handleTextChange}
+              style={{ backgroundColor: "#031525", color: "#cde3fd" }}
             />
             <div className="form-text text-muted">
-              We'll never share your email with anyone else.
+              <p style={{ color: "#cde3fd" }}>
+                We'll never share your email with anyone else.
+              </p>
             </div>
           </div>
           <div className="mb-3">
-            <label htmlFor="passwordAnchor" className="form-label">
+            <label
+              htmlFor="passwordAnchor"
+              className="form-label"
+              style={{ color: "#cde3fd" }}
+            >
               Password
             </label>
             <input
@@ -124,9 +133,14 @@ const Login = ({ onLogin }: LoginProp) => {
               placeholder="Password"
               name="password"
               onChange={handleTextChange}
+              style={{ backgroundColor: "#031525", color: "#cde3fd" }}
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">
+          <button
+            type="submit"
+            className="btn w-100 fw-bolder"
+            style={{ backgroundColor: "#7cacf8", color: "#031525" }}
+          >
             Sign in
           </button>
         </form>

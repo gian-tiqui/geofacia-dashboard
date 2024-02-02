@@ -40,6 +40,16 @@ interface Event {
   location: Location;
 }
 
+const customStyles = {
+  overlay: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the color and opacity of the overlay
+  },
+  content: {
+    backgroundColor: "#0d2136", // Set the background color of the modal content
+    color: "#cde3fd", // Set the text color
+  },
+};
+
 const AttendeesContainer = ({ eventId }: Popeyes) => {
   const [attendees, setAttendees] = useState<Attendees[] | undefined>(
     undefined
@@ -97,14 +107,14 @@ const AttendeesContainer = ({ eventId }: Popeyes) => {
   }, [eventId]);
 
   const handleExport = () => {
-    if (confirm("Download attendees data?")) {
+    if (window.confirm("Download attendees data?")) {
       if (attendees && attendees.length > 0) {
         const worksheet = XLSX.utils.json_to_sheet(attendees);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Attendees");
         XLSX.writeFile(workbook, "attendees.xlsx");
       } else {
-        alert("No data to export.");
+        window.alert("No data to export.");
       }
     }
   };
@@ -120,17 +130,28 @@ const AttendeesContainer = ({ eventId }: Popeyes) => {
   return (
     <>
       {attendees?.length !== 0 ? (
-        <div className="card m-2 shadow" style={{ width: "18rem" }}>
+        <div
+          className="card m-2 shadow"
+          style={{ width: "18rem", backgroundColor: "#0d2136" }}
+        >
           <div className="card-body">
-            <h5 className="card-title">{event?.title}</h5>
-            <h6 className="card-subtitle mb-2 text-muted">
+            <h5 className="card-title" style={{ color: "#cde3fd" }}>
+              {event?.title}
+            </h5>
+            <h6 className="card-subtitle mb-2" style={{ color: "#cde3fd" }}>
               {event?.targetCourse}
             </h6>
-            <p className="card-text">{event?.location.locationAddress}</p>
+            <p className="card-text" style={{ color: "#cde3fd" }}>
+              {event?.location.locationAddress}
+            </p>
             <button className="btn btn-primary me-2" onClick={handleExport}>
               Export
             </button>
-            <button className="btn btn-success me-2" onClick={openModal}>
+            <button
+              className="btn"
+              style={{ backgroundColor: "#cde3fd" }}
+              onClick={openModal}
+            >
               View
             </button>
           </div>
@@ -141,29 +162,38 @@ const AttendeesContainer = ({ eventId }: Popeyes) => {
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         contentLabel="Attendees Modal"
+        style={customStyles}
       >
-        <h2>{event?.title} Attendees</h2>
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Student Name</th>
-              <th>Institutional ID</th>
-            </tr>
-          </thead>
-          <tbody>
-            {attendees?.map((attendee) => (
-              <tr key={attendee.id}>
-                <td>{attendee.id}</td>
-                <td>{attendee.studentName}</td>
-                <td>{attendee.institutionalId}</td>
+        <div>
+          <div className="d-flex justify-content-between">
+            <h2>{event?.title} Attendees</h2>
+            <button
+              className="btn"
+              style={{ backgroundColor: "#cde3fd" }}
+              onClick={closeModal}
+            >
+              <i className="bi bi-box-arrow-left"></i>
+            </button>
+          </div>
+          <table className="table table-striped table-dark mt-5">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Institutional ID</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-        <button className="btn btn-danger" onClick={closeModal}>
-          Close
-        </button>
+            </thead>
+            <tbody>
+              {attendees?.map((attendee) => (
+                <tr key={attendee.id}>
+                  <td>{attendee.id}</td>
+                  <td>{attendee.studentName}</td>
+                  <td>{attendee.institutionalId}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </Modal>
     </>
   );

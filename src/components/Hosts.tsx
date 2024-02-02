@@ -89,9 +89,12 @@ const Hosts = () => {
 
   return (
     <div className="container">
-      <div className="p-3 border shadow mt-5" style={{ height: "80vh" }}>
+      <div
+        className="p-3 shadow mt-5"
+        style={{ height: "80vh", backgroundColor: "#0d2136" }}
+      >
         <div className="mb-3 d-flex align-self-center justify-content-between">
-          <h3>Hosts</h3>
+          <h3 style={{ color: "#cde3fd" }}>Hosts</h3>
 
           <div>
             <input
@@ -101,11 +104,12 @@ const Hosts = () => {
               value={searchTerm}
               onChange={handleSearchChange}
               placeholder="Search..."
+              style={{ backgroundColor: "#031525", color: "#cde3fd" }}
             />
           </div>
         </div>
         <hr className="my-4" />
-        <table className="table table-striped mt-3">
+        <table className="table table-striped table-dark mt-3">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -118,8 +122,14 @@ const Hosts = () => {
           </thead>
           <tbody>
             {students.length > 0 ? (
-              students.map((student) => (
-                <tr key={student.id}>
+              students.map((student, index) => (
+                <tr
+                  key={student.id}
+                  style={{
+                    backgroundColor: index % 2 === 0 ? "#031525" : "#0d2136",
+                    color: "#cde3fd",
+                  }}
+                >
                   <td scope="row">{student.institutionalID}</td>
                   <td>{student.firstName}</td>
                   <td>{student.lastName}</td>

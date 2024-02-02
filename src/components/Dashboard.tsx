@@ -78,36 +78,67 @@ const Dashboard = () => {
     <>
       <div className={`${firstElementMargin} ${headerFontSize}`}>
         <div className="d-flex justify-content-between align-items-center">
-          <p className={headerFontSize}>Welcome to the Dashboard</p>
-          <p className="fs-6">{new Date().toLocaleDateString()}</p>
+          <p className={headerFontSize} style={{ color: "#cde3fd" }}>
+            Welcome to the Dashboard
+          </p>
+          <p className="fs-6" style={{ color: "#cde3fd" }}>
+            {new Date().toLocaleDateString()}
+          </p>
         </div>
         <div className="row">
-          <div className="col m-2 p-5 shadow border d-flex flex-column align-items-center justify-content-center">
-            <p>{events.length}</p>
-            <p className="fs-6">Events</p>
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col m-2 p-5 shadow-sm d-flex flex-column align-items-center justify-content-center"
+          >
+            <p style={{ color: "#cde3fd" }}>{events.length}</p>
+            <p className="fs-6" style={{ color: "#cde3fd" }}>
+              Events
+            </p>
           </div>
-          <div className="col m-2 p-5 shadow border d-flex flex-column align-items-center justify-content-center">
-            <p>{totalUsers}</p>
-            <p className="fs-6">Users</p>
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col m-2 p-5 shadow-sm d-flex flex-column align-items-center justify-content-center"
+          >
+            <p style={{ color: "#cde3fd" }}>{totalUsers}</p>
+            <p className="fs-6" style={{ color: "#cde3fd" }}>
+              Users
+            </p>
           </div>
-          <div className="col m-2 p-5 shadow border d-flex flex-column align-items-center justify-content-center">
-            <p>{studentsCount}</p>
-            <p className="fs-6">Students</p>
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col m-2 p-5 shadow-sm d-flex flex-column align-items-center justify-content-center"
+          >
+            <p style={{ color: "#cde3fd" }}>{studentsCount}</p>
+            <p className="fs-6" style={{ color: "#cde3fd" }}>
+              Students
+            </p>
           </div>
         </div>
         <div className="row">
-          <div className="col-12 m-2 border shadow d-flex justify-content-center align-items-center">
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col-12 m-2 shadow-sm d-flex justify-content-center align-items-center"
+          >
             <div className="w-75">
               <LineGraph events={events} />
             </div>
           </div>
-          <div className="col my-2 mx-2 border shadow d-flex justify-content-center align-items-center p-3">
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col my-2 mx-2 shadow-sm d-flex justify-content-center align-items-center p-3"
+          >
             <Bargraph events={events} />
           </div>
-          <div className="col my-2 mx-2 border shadow d-flex justify-content-center align-items-center p-3">
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col my-2 mx-2 shadow-sm d-flex justify-content-center align-items-center p-3"
+          >
             <BarGraph events={events} categoryKey="targetCourse" />
           </div>
-          <div className="col my-2 mx-2 border shadow d-flex justify-content-center align-items-center p-3">
+          <div
+            style={{ backgroundColor: "#0d2136" }}
+            className="col my-2 mx-2 shadow-sm d-flex justify-content-center align-items-center p-3"
+          >
             <BarGraph events={events} categoryKey="targetDepartment" />
           </div>
         </div>

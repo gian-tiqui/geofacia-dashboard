@@ -28,7 +28,8 @@ const Attendance = () => {
 
   return (
     <div className="container">
-      <div className="row">
+      <h3 style={{ color: "#cde3fd" }}>Events</h3>
+      <div className="row mt-4">
         {eventIds?.map((id) => (
           <AttendeesContainer eventId={id} />
         ))}

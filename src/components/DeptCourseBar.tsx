@@ -33,6 +33,29 @@ const options = {
   scales: {
     y: {
       beginAtZero: true,
+      color: "#7799b3",
+      ticks: {
+        color: "#7799b3",
+      },
+      grid: {
+        color: "#7799b3",
+      },
+    },
+    x: {
+      color: "#7799b3",
+      ticks: {
+        color: "#7799b3",
+      },
+      grid: {
+        color: "#7799b3",
+      },
+    },
+  },
+  plugins: {
+    legend: {
+      labels: {
+        color: "#7799b3",
+      },
     },
   },
 };
